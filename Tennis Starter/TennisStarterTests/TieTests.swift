@@ -102,5 +102,29 @@ class TieTests: XCTestCase {
 
         XCTAssertNotEqual(0, result)
     }
+    func testTieGreenP1() {
+        for _ in 0...5{
+            tennis.TieInstance.addPointToPlayer1()
+        }
+        
+        XCTAssertTrue(tennis.TieInstance.greenTieP1(), "P1 has green indicator")
+    }
+    func testTieGreenP2() {
+        
+        for _ in 0...5{
+             tennis.TieInstance.addPointToPlayer2()
+        }
+        XCTAssertTrue(tennis.TieInstance.greenTieP2(), "P2 has green indicator")
+    }
+    func testTieGreenP1False() {
+         tennis.TieInstance.addPointToPlayer1()
+        
+        XCTAssertFalse(tennis.TieInstance.greenTieP1(), "P1 has green indicator")
+    }
+    func testTieGreenP2False() {
+         tennis.TieInstance.addPointToPlayer2()
+        
+        XCTAssertFalse(tennis.TieInstance.greenTieP2(), "P2 has green indicator")
+    }
 }
 

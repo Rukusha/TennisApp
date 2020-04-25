@@ -150,4 +150,11 @@ class MatchTests: XCTestCase {
         
         XCTAssertFalse(match.greenMatchP2(), "P2 has green indicator")
     }
+    func testMatchP1EqualsP2False() {
+        match.addSetsToPlayer1()
+        match.addSetsToPlayer2()
+
+        XCTAssertFalse(match.greenMatchP1(), "P1 has no green indicator")
+        XCTAssertFalse(match.greenMatchP2(), "P2 has no green indicator")
+    }
 }

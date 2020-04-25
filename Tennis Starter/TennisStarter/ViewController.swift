@@ -36,42 +36,56 @@ class ViewController: UIViewController {
     }
     func greenIndicator(){
 //        Points green check ----------------------------------------------------------------------------------------------
-        if TennisInstance.GameInstance.greenPointsP1() == true{
+        if TennisInstance.GameInstance.greenPointsP1() == true || TennisInstance.TieInstance.greenTieP1() == true{
             p1PointsLabel.backgroundColor = UIColor.green
         }else{
             p1PointsLabel.backgroundColor = UIColor.white
         }
-        if TennisInstance.GameInstance.greenPointsP2() == true{
+        if TennisInstance.GameInstance.greenPointsP2() == true || TennisInstance.TieInstance.greenTieP2() == true{
             p2PointsLabel.backgroundColor = UIColor.green
         }else{
             p2PointsLabel.backgroundColor = UIColor.white
         }
 //        Games green check ----------------------------------------------------------------------------------------------
-        if TennisInstance.SetInstance.greenGamesP1() == true && TennisInstance.GameInstance.greenPointsP1() == true{
+        if (TennisInstance.SetInstance.greenGamesP1() == true && (TennisInstance.GameInstance.greenPointsP1() == true || TennisInstance.TieInstance.greenTieP1() == true)){
             p1GamesLabel.backgroundColor = UIColor.green
         }
-        else if TennisInstance.SetInstance.greenGamesP1() == false && TennisInstance.GameInstance.greenPointsP1() == false{
+        else if (TennisInstance.SetInstance.greenGamesP1() == true && TennisInstance.TieInstance.greenTieP1() == false){
             p1GamesLabel.backgroundColor = UIColor.white
         }
-        if TennisInstance.SetInstance.greenGamesP2() == true && TennisInstance.GameInstance.greenPointsP2() == true{
+        else if (TennisInstance.SetInstance.greenGamesP1() == false && (TennisInstance.GameInstance.greenPointsP1() == false || TennisInstance.TieInstance.greenTieP1() == false)){
+            p1GamesLabel.backgroundColor = UIColor.white
+        }
+        if (TennisInstance.SetInstance.greenGamesP2() == true && (TennisInstance.GameInstance.greenPointsP2() == true || TennisInstance.TieInstance.greenTieP2() == true)){
             p2GamesLabel.backgroundColor = UIColor.green
         }
-        else if TennisInstance.SetInstance.greenGamesP2() == false && TennisInstance.GameInstance.greenPointsP2() == false{
+        else if (TennisInstance.SetInstance.greenGamesP2() == true && TennisInstance.TieInstance.greenTieP2() == false){
+                p2GamesLabel.backgroundColor = UIColor.white
+            }
+        else if (TennisInstance.SetInstance.greenGamesP2() == false && (TennisInstance.GameInstance.greenPointsP2() == false || TennisInstance.TieInstance.greenTieP2() == false)){
             p2GamesLabel.backgroundColor = UIColor.white
         }
 //        Sets green check ----------------------------------------------------------------------------------------------
-        if TennisInstance.MatchInstance.greenMatchP1() == true && TennisInstance.SetInstance.greenGamesP1() == true && TennisInstance.GameInstance.greenPointsP1() == true{
+        if (TennisInstance.MatchInstance.greenMatchP1() == true && TennisInstance.SetInstance.greenGamesP1() == true && (TennisInstance.GameInstance.greenPointsP1() == true || TennisInstance.TieInstance.greenTieP1() == true)){
             p1SetsLabel.backgroundColor = UIColor.green
         }
-        else if TennisInstance.MatchInstance.greenMatchP1() == false && TennisInstance.SetInstance.greenGamesP1() == false && TennisInstance.GameInstance.greenPointsP2() == false{
+        else if (TennisInstance.MatchInstance.greenMatchP1() == false && TennisInstance.SetInstance.greenGamesP1() == true && (TennisInstance.GameInstance.greenPointsP1() == true || TennisInstance.TieInstance.greenTieP1() == true)){
             p1SetsLabel.backgroundColor = UIColor.white
         }
-        if TennisInstance.MatchInstance.greenMatchP2() == true && TennisInstance.SetInstance.greenGamesP2() == true && TennisInstance.GameInstance.greenPointsP2() == true{
+        else if (TennisInstance.MatchInstance.greenMatchP1() == true && TennisInstance.SetInstance.greenGamesP1() == true && (TennisInstance.GameInstance.greenPointsP1() == false || TennisInstance.TieInstance.greenTieP1() == false)){
+            p1SetsLabel.backgroundColor = UIColor.white
+        }
+
+        if (TennisInstance.MatchInstance.greenMatchP2() == true && TennisInstance.SetInstance.greenGamesP2() == true && (TennisInstance.GameInstance.greenPointsP2() == true || TennisInstance.TieInstance.greenTieP2() == true)){
             p2SetsLabel.backgroundColor = UIColor.green
         }
-        else if TennisInstance.MatchInstance.greenMatchP2() == false && TennisInstance.SetInstance.greenGamesP2() == false && TennisInstance.GameInstance.greenPointsP2() == false{
+        else if (TennisInstance.MatchInstance.greenMatchP2() == false && TennisInstance.SetInstance.greenGamesP2() == true && (TennisInstance.GameInstance.greenPointsP2() == true || TennisInstance.TieInstance.greenTieP2() == true)){
             p2SetsLabel.backgroundColor = UIColor.white
         }
+        else if (TennisInstance.MatchInstance.greenMatchP2() == true && TennisInstance.SetInstance.greenGamesP2() == true && (TennisInstance.GameInstance.greenPointsP2() == false || TennisInstance.TieInstance.greenTieP2() == false)){
+            p2SetsLabel.backgroundColor = UIColor.white
+        }
+
 
     }
     func MatchFinished(){

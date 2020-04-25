@@ -15,6 +15,18 @@ class TieBreak {
         p2Score = 0
     }
     
+    func greenTieP1() -> Bool{
+        if gamePointsForPlayer1() >= 6 && gamePointsForPlayer1() >= gamePointsForPlayer2() + 1{
+           return true
+        }
+        return false
+    }
+    func greenTieP2() -> Bool{
+        if gamePointsForPlayer2() >= 6 && gamePointsForPlayer2() >= gamePointsForPlayer1() + 1{
+           return true
+        }
+        return false
+    }
     func gamePointsForPlayer1() -> Int{
         return p1Score
     }

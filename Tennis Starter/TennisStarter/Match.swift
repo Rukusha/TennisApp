@@ -15,12 +15,16 @@ class Match{
     func greenMatchP1() -> Bool{
         if SetsWonForPlayer1() > SetsWonForPlayer2() && SetsWonForPlayer1() >= 2{
            return true
+        }else if SetsWonForPlayer1() == SetsWonForPlayer2() {
+           return false
         }
         return false
     }
     func greenMatchP2() -> Bool{
         if SetsWonForPlayer2() > SetsWonForPlayer1() && SetsWonForPlayer2() >= 2{
            return true
+        }else if SetsWonForPlayer1() == SetsWonForPlayer2() {
+           return false
         }
         return false
     }

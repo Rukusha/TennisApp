@@ -1,10 +1,21 @@
 class Game{
     var p1Score: Int
     var p2Score: Int
-    
     init(){
         p1Score = 0
         p2Score = 0
+    }
+    func greenPointsP1() -> Bool{
+        if gamePointsForPlayer1() > gamePointsForPlayer2() && gamePointsForPlayer1() != 0{
+           return true
+        }
+        return false
+    }
+    func greenPointsP2() -> Bool{
+        if gamePointsForPlayer2() > gamePointsForPlayer1() && gamePointsForPlayer2() != 0{
+           return true
+        }
+        return false
     }
     func gamePointsForPlayer1() -> Int{
         if p1Score >= 3{

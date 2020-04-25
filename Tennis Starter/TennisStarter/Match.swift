@@ -12,6 +12,18 @@ class Match{
     
     var winner: String = ""
     
+    func greenMatchP1() -> Bool{
+        if SetsWonForPlayer1() > SetsWonForPlayer2() && SetsWonForPlayer1() >= 2{
+           return true
+        }
+        return false
+    }
+    func greenMatchP2() -> Bool{
+        if SetsWonForPlayer2() > SetsWonForPlayer1() && SetsWonForPlayer2() >= 2{
+           return true
+        }
+        return false
+    }
     
     func SetsWonForPlayer1() -> Int{
         return p1SetsWon

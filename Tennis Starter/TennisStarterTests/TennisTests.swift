@@ -49,9 +49,9 @@ class TennisTests: XCTestCase {
      }
  
     func testTextToSpeach(){
-        let speach = tennis.speechString
+        let speach = tennis.speachString
         tennis.textToSpeech()
-        XCTAssertNotEqual(speach, tennis.speechString)
+        XCTAssertNotEqual(speach, tennis.speachString)
     }
     func testTextToSpeach7Games(){
         for _ in 1...7{
@@ -87,9 +87,9 @@ class TennisTests: XCTestCase {
     }
     
     func testTieLock(){
-        let TieServe = tennis.TieServeCount
+        let TieServe = tennis.tieServeCount
         tennis.tie(player: true)
-        XCTAssertNotEqual(TieServe, tennis.TieServeCount)
+        XCTAssertNotEqual(TieServe, tennis.tieServeCount)
     }
 
     func testServe(){

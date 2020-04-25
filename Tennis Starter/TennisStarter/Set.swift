@@ -10,6 +10,19 @@ class Set {
     var p1GamesWon: Int = 0
     var p2GamesWon: Int = 0
     
+    
+    func greenGamesP1() -> Bool{
+        if GamesWonForPlayer1() > GamesWonForPlayer2() && GamesWonForPlayer1() == 5{
+           return true
+        }
+        return false
+    }
+    func greenGamesP2() -> Bool{
+        if GamesWonForPlayer2() > GamesWonForPlayer1() && GamesWonForPlayer2() == 5{
+           return true
+        }
+        return false
+    }
     func GamesWonForPlayer1() -> Int{
         return p1GamesWon
     }

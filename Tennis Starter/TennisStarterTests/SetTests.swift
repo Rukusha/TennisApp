@@ -65,7 +65,7 @@ class SetTests: XCTestCase {
     }
 
     func testSetCompleteSetP1Score(){
-        let preCheck = "\(tennis.SetP1Score)"
+        let preCheck = "\(tennis.setP1Score)"
         for _ in 0...6{
             tennis.GameInstance.addPointToPlayer1()
         }
@@ -73,7 +73,7 @@ class SetTests: XCTestCase {
             tennis.SetInstance.addGameToPlayer1()
         }
         tennis.main(player: true)
-        let check = "\(tennis.SetP1Score)"
+        let check = "\(tennis.setP1Score)"
 
         XCTAssertNotEqual(check, preCheck)
     }
@@ -86,7 +86,7 @@ class SetTests: XCTestCase {
             tennis.SetInstance.addGameToPlayer1()
         }
         tennis.main(player: true)
-        let setCheck = tennis.setCheck
+        let setCheck = tennis.setsPlayedCheck
         if setCheck % 2 == 0{
             playerServe = true
         }else{
@@ -107,7 +107,7 @@ class SetTests: XCTestCase {
             tennis.SetInstance.addGameToPlayer1()
         }
         tennis.main(player: true)
-        let setCheck = tennis.setCheck
+        let setCheck = tennis.setsPlayedCheck
         if setCheck % 2 == 0{
             playerServe = true
         }else{
@@ -115,4 +115,35 @@ class SetTests: XCTestCase {
         }
         XCTAssertTrue(playerServe)
     }
+    func testSetGreenP1() {
+        
+        for _ in 1...5{
+            set.addGameToPlayer1()
+        }
+        print(set.GamesWonForPlayer1())
+        XCTAssertTrue(set.greenGamesP1(), "P1 has green indicator")
+    }
+    func testSetGreenP2() {
+        
+        for _ in 1...5{
+             set.addGameToPlayer2()
+        }
+        XCTAssertTrue(set.greenGamesP2(), "P2 has green indicator")
+    }
+    func testSetGreenP1False() {
+        
+        for _ in 1...4{
+            set.addGameToPlayer1()
+        }
+        print(set.GamesWonForPlayer1())
+        XCTAssertFalse(set.greenGamesP1(), "P1 has green indicator")
+    }
+    func testSetGreenP2False() {
+        
+        for _ in 1...4{
+             set.addGameToPlayer2()
+        }
+        XCTAssertFalse(set.greenGamesP2(), "P2 has green indicator")
+    }
+    
 }

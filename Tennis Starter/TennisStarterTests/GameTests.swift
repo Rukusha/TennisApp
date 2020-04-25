@@ -257,5 +257,35 @@ class GameTests: XCTestCase {
         game.addPointToPlayer2()
         XCTAssertEqual(game.gamePointsForPlayer2(), 1, "P2 has 1 game point at 40-A")
     }
+    func testGameGreenP1() {
+        
+        for _ in 0...3{
+            game.addPointToPlayer1()
+        }
+        
+        XCTAssertTrue(game.greenPointsP1(), "P1 has green indicator")
+    }
+    func testGameGreenP2() {
+        
+        for _ in 0...3{
+            game.addPointToPlayer2()
+        }
+        XCTAssertTrue(game.greenPointsP2(), "P2 has green indicator")
+    }
+    func testGameGreenP1False() {
+        
+        for _ in 0...1{
+            game.addPointToPlayer1()
+        }
+        
+        XCTAssertFalse(game.greenPointsP1(), "P1 has green indicator")
+    }
+    func testGameGreenP2False() {
+        
+        for _ in 0...1{
+            game.addPointToPlayer2()
+        }
+        XCTAssertFalse(game.greenPointsP2(), "P2 has green indicator")
+    }
     
 }

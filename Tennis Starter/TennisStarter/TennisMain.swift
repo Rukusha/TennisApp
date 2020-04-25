@@ -15,29 +15,28 @@ class TennisMain{
     var MatchInstance = Match()
     var TieInstance = TieBreak()
     
-    var TieBreaker: Bool =  false
-    var SetP1Score: String = ""
-    var SetP2Score: String = ""
+    var TieBreaker: Bool = false
     var playerServe: Bool = true
-    var gamesPlayed: Int = 0
-    
-    var toneSound: AVAudioPlayer?
-    var speechString: String = "Test"
-    
-    var servedFirst = true
-    
-    var TieServeCount = 0
     var tieLock: Bool = false
     var reciever: Bool = true
-    var setCheck: Int = 1
-    var matchCompleted: Bool =  false
+    var matchCompleted: Bool = false
+    var tieBreaker: Bool = true
+    var audioFailCheck: Bool = false
+
+    var setP1Score: String = ""
+    var setP2Score: String = ""
+    var speachString: String = "Test"
+    
+    var toneSound: AVAudioPlayer?
+
+    var tieServeCount: Int = 0
+    var gamesPlayed: Int = 0
+    var setsPlayedCheck: Int = 1
     
     let path = Bundle.main.path(forResource: "Sound.wav", ofType:nil)!
-    var audioFailCheck = false
     
     func tonePlay(path: String){
         let url = URL(fileURLWithPath: path)
-        
         do {
             toneSound = try AVAudioPlayer(contentsOf: url)
             toneSound?.prepareToPlay()
@@ -48,9 +47,9 @@ class TennisMain{
         }
     }
     func textToSpeech() -> Bool{
-        speechString = "New Ball Please"
+        speachString = "New Ball Please"
         if ((gamesPlayed + 11) % 9 == 0) && gamesPlayed != 0 && gamesPlayed != 9 || gamesPlayed == 7{
-            let speech = AVSpeechUtterance(string: speechString)
+            let speech = AVSpeechUtterance(string: speachString)
             speech.voice = AVSpeechSynthesisVoice(language: "en-US")
             
             let audio = AVSpeechSynthesizer()
@@ -87,7 +86,7 @@ class TennisMain{
         }
         
         if TieInstance.complete() ==  true{
-            textToSpeech() // returned value is used for unit tests
+            textToSpeech() // returned value is only used for unit tests
             if TieInstance.player1Won() == true{
                 gamesPlayed += 1
 
@@ -100,37 +99,37 @@ class TennisMain{
                 SetInstance.addGameToPlayer2()
             }
             
-            SetP1Score += "\(SetInstance.GamesWonForPlayer1())"
-            SetP2Score += "\(SetInstance.GamesWonForPlayer2())"
+            setP1Score += "\(SetInstance.GamesWonForPlayer1())"
+            setP2Score += "\(SetInstance.GamesWonForPlayer2())"
             
             match(player: player)
             TieInstance = TieBreak()
             SetInstance = Set()
             
             TieBreaker = false
-            TieServeCount = 0
+            tieServeCount = 0
             serve()
         }
         if GameInstance.complete() ==  true{
             gamesPlayed += 1
-            textToSpeech() // returned value is used for unit tests
+            textToSpeech() //// returned value is only used for unit tests
             serve()
             set(player: player)
             GameInstance = Game()
             
             if SetInstance.complete() ==  true{
                 match(player: player)
-                SetP1Score += "\(SetInstance.GamesWonForPlayer1())"
-                SetP2Score += "\(SetInstance.GamesWonForPlayer2())"
+                setP1Score += "\(SetInstance.GamesWonForPlayer1())"
+                setP2Score += "\(SetInstance.GamesWonForPlayer2())"
                 SetInstance = Set()
-                setCheck = MatchInstance.p1SetsWon + MatchInstance.p2SetsWon
+                setsPlayedCheck = MatchInstance.p1SetsWon + MatchInstance.p2SetsWon
                 
-                if setCheck % 2 == 0{
+                if setsPlayedCheck % 2 == 0{
                     playerServe = true
                 }else{
                     playerServe = false
                 }
-                servedFirst = false
+                tieBreaker = false
             }
         }
         if MatchInstance.complete() == true{
@@ -158,18 +157,18 @@ class TennisMain{
     }
     
     func tie(player: Bool){
-        if TieServeCount % 2 == 0 && TieServeCount != 0 || TieServeCount % 2 != 1{
+        if tieServeCount % 2 == 0 && tieServeCount != 0 || tieServeCount % 2 != 1{
             serveSwitch()
         }
         
-        if TieServeCount == 0 {
+        if tieServeCount == 0 {
             if tieLock == false{
                 reciever = playerServe
                 tieLock = true
             }
         }
         
-        TieServeCount += 1
+        tieServeCount += 1
         
         if player == true{
             TieInstance.addPointToPlayer1()

@@ -35,87 +35,44 @@ class ViewController: UIViewController {
         }
     }
     func greenIndicator(){
-        if TennisInstance.GameInstance.gamePointsForPlayer1() >= 1{
+//        Points green check ----------------------------------------------------------------------------------------------
+        if TennisInstance.GameInstance.greenPointsP1() == true{
             p1PointsLabel.backgroundColor = UIColor.green
-        }else {
+        }else{
             p1PointsLabel.backgroundColor = UIColor.white
         }
-        if TennisInstance.TieBreaker == true{
-            if TennisInstance.TieInstance.gamePointsForPlayer1() >= 6 && TennisInstance.TieInstance.gamePointsForPlayer1() >= 1 {
-                if TennisInstance.TieInstance.gamePointsForPlayer1() - TennisInstance.TieInstance.gamePointsForPlayer2() >= 1{
-                    p1GamesLabel.backgroundColor = UIColor.green
-                    p1PointsLabel.backgroundColor = UIColor.green
-                    p2PointsLabel.backgroundColor = UIColor.white
-                }else{
-                    if TennisInstance.TieInstance.gamePointsForPlayer1() == TennisInstance.TieInstance.gamePointsForPlayer2(){
-                        p1GamesLabel.backgroundColor = UIColor.white
-                        p2PointsLabel.backgroundColor = UIColor.white
-                        p2GamesLabel.backgroundColor = UIColor.white
-                        p1PointsLabel.backgroundColor = UIColor.white
-                    }
-                }
-            }else if TennisInstance.TieInstance.gamePointsForPlayer1() == 0{
-                p1GamesLabel.backgroundColor = UIColor.white
-                p1PointsLabel.backgroundColor = UIColor.white
-            }
-        }else{
-            if TennisInstance.SetInstance.GamesWonForPlayer1() >= 5 && TennisInstance.GameInstance.gamePointsForPlayer1() >= 1 {
-                if TennisInstance.SetInstance.GamesWonForPlayer1() - TennisInstance.SetInstance.GamesWonForPlayer2() >= 1{
-                    p1GamesLabel.backgroundColor = UIColor.green
-                    if TennisInstance.MatchInstance.p1SetsWon >= 2{
-                        p1SetsLabel.backgroundColor = UIColor.green
-                    }
-                }
-            }else if TennisInstance.SetInstance.GamesWonForPlayer1() == 0{
-                p1GamesLabel.backgroundColor = UIColor.white
-            }
-            if TennisInstance.SetInstance.GamesWonForPlayer2() >= 5 && TennisInstance.SetInstance.GamesWonForPlayer1() >= 5 && TennisInstance.SetInstance.GamesWonForPlayer2() == TennisInstance.SetInstance.GamesWonForPlayer1(){
-                p1GamesLabel.backgroundColor = UIColor.white
-                p2GamesLabel.backgroundColor = UIColor.white
-            }
-        }
-        if TennisInstance.MatchInstance.SetsWonForPlayer1() == 0{
-            p1SetsLabel.backgroundColor = UIColor.white
-        }
-        if TennisInstance.GameInstance.gamePointsForPlayer2() >= 1{
+        if TennisInstance.GameInstance.greenPointsP2() == true{
             p2PointsLabel.backgroundColor = UIColor.green
-        }else {
+        }else{
             p2PointsLabel.backgroundColor = UIColor.white
         }
-        if TennisInstance.TieBreaker == true{
-            if TennisInstance.TieInstance.gamePointsForPlayer2() >= 6 && TennisInstance.TieInstance.gamePointsForPlayer2() >= 1 {
-                if TennisInstance.TieInstance.gamePointsForPlayer2() - TennisInstance.TieInstance.gamePointsForPlayer1() >= 1{
-                    p2GamesLabel.backgroundColor = UIColor.green
-                    p2PointsLabel.backgroundColor = UIColor.green
-                    p1PointsLabel.backgroundColor = UIColor.white
-                }else{
-                    if TennisInstance.TieInstance.gamePointsForPlayer1() == TennisInstance.TieInstance.gamePointsForPlayer2(){
-                        p1GamesLabel.backgroundColor = UIColor.white
-                        p2PointsLabel.backgroundColor = UIColor.white
-                        p2GamesLabel.backgroundColor = UIColor.white
-                        p1PointsLabel.backgroundColor = UIColor.white
-                    }
-                }
-            }else if TennisInstance.TieInstance.gamePointsForPlayer2() == 0{
-                p2GamesLabel.backgroundColor = UIColor.white
-            }
-        }else{
-            if TennisInstance.SetInstance.GamesWonForPlayer2() >= 5 && TennisInstance.GameInstance.gamePointsForPlayer2() >= 1 {
-                
-                if TennisInstance.SetInstance.GamesWonForPlayer2() - TennisInstance.SetInstance.GamesWonForPlayer1() >= 1{
-                    p2GamesLabel.backgroundColor = UIColor.green
-                    if TennisInstance.MatchInstance.p2SetsWon >= 2{
-                        p2SetsLabel.backgroundColor = UIColor.green
-                    }
-                }
-            }else if TennisInstance.SetInstance.GamesWonForPlayer2() == 0{
-                p2GamesLabel.backgroundColor = UIColor.white
-            }
-            if TennisInstance.SetInstance.GamesWonForPlayer2() >= 5 && TennisInstance.SetInstance.GamesWonForPlayer1() >= 5 && TennisInstance.SetInstance.GamesWonForPlayer2() == TennisInstance.SetInstance.GamesWonForPlayer1(){
-                p1GamesLabel.backgroundColor = UIColor.white
-                p2GamesLabel.backgroundColor = UIColor.white
-            }
+//        Games green check ----------------------------------------------------------------------------------------------
+        if TennisInstance.SetInstance.greenGamesP1() == true && TennisInstance.GameInstance.greenPointsP1() == true{
+            p1GamesLabel.backgroundColor = UIColor.green
         }
+        else if TennisInstance.SetInstance.greenGamesP1() == false && TennisInstance.GameInstance.greenPointsP1() == false{
+            p1GamesLabel.backgroundColor = UIColor.white
+        }
+        if TennisInstance.SetInstance.greenGamesP2() == true && TennisInstance.GameInstance.greenPointsP2() == true{
+            p2GamesLabel.backgroundColor = UIColor.green
+        }
+        else if TennisInstance.SetInstance.greenGamesP2() == false && TennisInstance.GameInstance.greenPointsP2() == false{
+            p2GamesLabel.backgroundColor = UIColor.white
+        }
+//        Sets green check ----------------------------------------------------------------------------------------------
+        if TennisInstance.MatchInstance.greenMatchP1() == true && TennisInstance.SetInstance.greenGamesP1() == true && TennisInstance.GameInstance.greenPointsP1() == true{
+            p1SetsLabel.backgroundColor = UIColor.green
+        }
+        else if TennisInstance.MatchInstance.greenMatchP1() == false && TennisInstance.SetInstance.greenGamesP1() == false && TennisInstance.GameInstance.greenPointsP2() == false{
+            p1SetsLabel.backgroundColor = UIColor.white
+        }
+        if TennisInstance.MatchInstance.greenMatchP2() == true && TennisInstance.SetInstance.greenGamesP2() == true && TennisInstance.GameInstance.greenPointsP2() == true{
+            p2SetsLabel.backgroundColor = UIColor.green
+        }
+        else if TennisInstance.MatchInstance.greenMatchP2() == false && TennisInstance.SetInstance.greenGamesP2() == false && TennisInstance.GameInstance.greenPointsP2() == false{
+            p2SetsLabel.backgroundColor = UIColor.white
+        }
+
     }
     func MatchFinished(){
         if TennisInstance.MatchInstance.complete() == true{
@@ -123,8 +80,8 @@ class ViewController: UIViewController {
             p2Button.isEnabled = false
             p1PointsLabel.text = ""
             p2PointsLabel.text = ""
-            p1GamesLabel.text = "\(TennisInstance.SetP1Score.last!)"
-            p2GamesLabel.text = "\(TennisInstance.SetP2Score.last!)"
+            p1GamesLabel.text = "\(TennisInstance.setP1Score.last!)"
+            p2GamesLabel.text = "\(TennisInstance.setP2Score.last!)"
             p1PointsLabel.backgroundColor = UIColor.white
             p1GamesLabel.backgroundColor = UIColor.white
             p1SetsLabel.backgroundColor = UIColor.white
@@ -163,8 +120,8 @@ class ViewController: UIViewController {
         serverIndicator()
         playerTextLabelsSet()
         MatchFinished()
-        p1PreviousSetsLabel.text = "\(TennisInstance.SetP1Score)"
-        p2PreviousSetsLabel.text = "\(TennisInstance.SetP2Score)"
+        p1PreviousSetsLabel.text = "\(TennisInstance.setP1Score)"
+        p2PreviousSetsLabel.text = "\(TennisInstance.setP2Score)"
         greenIndicator()
     }
 
@@ -175,8 +132,8 @@ class ViewController: UIViewController {
         serverIndicator()
         playerTextLabelsSet()
         MatchFinished()
-        p1PreviousSetsLabel.text = "\(TennisInstance.SetP1Score)"
-        p2PreviousSetsLabel.text = "\(TennisInstance.SetP2Score)"
+        p1PreviousSetsLabel.text = "\(TennisInstance.setP1Score)"
+        p2PreviousSetsLabel.text = "\(TennisInstance.setP2Score)"
         greenIndicator()
     }
     

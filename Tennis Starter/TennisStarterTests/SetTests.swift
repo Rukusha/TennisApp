@@ -154,5 +154,14 @@ class SetTests: XCTestCase {
         XCTAssertFalse(set.greenGamesP1(), "P1 has no green indicator")
         XCTAssertFalse(set.greenGamesP2(), "P2 has no green indicator")
     }
-    
+    func testSetGreen12allTrue() {
+        
+        for _ in 1...12{
+            set.addGameToPlayer1()
+            set.addGameToPlayer2()
+        }
+        XCTAssertTrue(set.greenGamesP1(), "P1 has a green indicator")
+        XCTAssertTrue(set.greenGamesP2(), "P2 has a green indicator")
+    }
+
 }

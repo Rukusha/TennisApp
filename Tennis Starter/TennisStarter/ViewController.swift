@@ -85,8 +85,21 @@ class ViewController: UIViewController {
         else if (TennisInstance.MatchInstance.greenMatchP2() == true && TennisInstance.SetInstance.greenGamesP2() == true && (TennisInstance.GameInstance.greenPointsP2() == false || TennisInstance.TieInstance.greenTieP2() == false)){
             p2SetsLabel.backgroundColor = UIColor.white
         }
-
-
+//        tie breaker green indicators --------------------------------------------------------------------------------
+        if TennisInstance.TieBreaker == true{
+            if (TennisInstance.SetInstance.greenGamesP1() == false && TennisInstance.TieInstance.greenTieP1() == true){
+                p1GamesLabel.backgroundColor = UIColor.green
+            }
+            if (TennisInstance.MatchInstance.greenMatchP1() == true && TennisInstance.SetInstance.greenGamesP1() == false &&  TennisInstance.TieInstance.greenTieP1() == true){
+                p1SetsLabel.backgroundColor = UIColor.green
+            }
+            if (TennisInstance.SetInstance.greenGamesP2() == false && TennisInstance.TieInstance.greenTieP2() == true){
+                p2GamesLabel.backgroundColor = UIColor.green
+            }
+            if (TennisInstance.MatchInstance.greenMatchP2() == true && TennisInstance.SetInstance.greenGamesP2() == false &&  TennisInstance.TieInstance.greenTieP2() == true){
+                p2SetsLabel.backgroundColor = UIColor.green
+            }
+        }
     }
     func MatchFinished(){
         if TennisInstance.MatchInstance.complete() == true{
@@ -156,8 +169,8 @@ class ViewController: UIViewController {
         let viewController = story.instantiateViewController(withIdentifier: "ViewController")
 
         let transitionFlip: UIView.AnimationOptions = .transitionFlipFromLeft
-        let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
-        rootviewcontroller.rootViewController = viewController
+        let rootViewController: UIWindow = ((UIApplication.shared.delegate?.window)!)!
+        rootViewController.rootViewController = viewController
         let main = (UIApplication.shared.delegate?.window!)!
         UIView.transition(with: main, duration: 0.3, options: transitionFlip, animations: nil, completion: nil)
 

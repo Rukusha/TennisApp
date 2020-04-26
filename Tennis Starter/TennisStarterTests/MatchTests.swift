@@ -65,9 +65,6 @@ class MatchTests: XCTestCase {
     }
     func testSetTieP1Check(){
         testSetTieCheck()
-        print(match.SetsWonForPlayer1())
-        print(match.SetsWonForPlayer2())
-        
         match.addSetsToPlayer1()
         
         XCTAssertTrue(match.complete(), "Game complete with P1 Wins")
@@ -106,7 +103,6 @@ class MatchTests: XCTestCase {
             match.addSetsToPlayer2()
             
         }
-        print(match.SetsWonForPlayer1(), match.SetsWonForPlayer2())
         match.addSetsToPlayer1()
         
         XCTAssertTrue(match.complete(), "P1 match won")
@@ -156,5 +152,13 @@ class MatchTests: XCTestCase {
 
         XCTAssertFalse(match.greenMatchP1(), "P1 has no green indicator")
         XCTAssertFalse(match.greenMatchP2(), "P2 has no green indicator")
+    }
+    func testSetGreenSet2allTrue() {
+        for _ in 1...2{
+            match.addSetsToPlayer1()
+            match.addSetsToPlayer2()
+        }
+        XCTAssertTrue(match.greenMatchP1(), "P1 has a green indicator")
+        XCTAssertTrue(match.greenMatchP2(), "P2 has a green indicator")
     }
 }

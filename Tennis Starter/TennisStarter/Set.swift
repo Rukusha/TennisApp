@@ -14,7 +14,9 @@ class Set {
     func greenGamesP1() -> Bool{
         if GamesWonForPlayer1() >= 5 && GamesWonForPlayer1() >= GamesWonForPlayer2() + 1{
            return true
-        }else if GamesWonForPlayer1() >= 6 && GamesWonForPlayer2() >= 6{
+        }else if GamesWonForPlayer1() == 12 && GamesWonForPlayer2() == 12{
+           return true
+        }else if GamesWonForPlayer1() >= 6 && GamesWonForPlayer1() >= GamesWonForPlayer2() + 1{
            return false
         }
         return false
@@ -22,7 +24,9 @@ class Set {
     func greenGamesP2() -> Bool{
         if GamesWonForPlayer2() >= 5 && GamesWonForPlayer2() >= GamesWonForPlayer1() + 1{
            return true
-        }else if GamesWonForPlayer2() >= 6 && GamesWonForPlayer1() >= 6{
+        }else if GamesWonForPlayer2() == 12 && GamesWonForPlayer1() == 12{
+           return true
+        }else if GamesWonForPlayer2() >= 6 && GamesWonForPlayer2() >= GamesWonForPlayer1() + 1{
            return false
         }
         return false

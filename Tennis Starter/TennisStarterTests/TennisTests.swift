@@ -57,7 +57,6 @@ class TennisTests: XCTestCase {
         for _ in 1...7{
             tennis.gamesPlayed += 1
         }
-        print(tennis.gamesPlayed)
         let result = tennis.textToSpeech()
         XCTAssertTrue(result)
     }
@@ -65,7 +64,6 @@ class TennisTests: XCTestCase {
         for _ in 1...16{
             tennis.gamesPlayed += 1
         }
-        print(tennis.gamesPlayed)
         let result = tennis.textToSpeech()
         XCTAssertTrue(result)
     }
@@ -73,7 +71,6 @@ class TennisTests: XCTestCase {
         for _ in 1...25{
             tennis.gamesPlayed += 1
         }
-        print(tennis.gamesPlayed)
         let result = tennis.textToSpeech()
         XCTAssertTrue(result)
     }
@@ -102,7 +99,6 @@ class TennisTests: XCTestCase {
             tennis.SetInstance.addGameToPlayer1()
             tennis.SetInstance.addGameToPlayer2()
         }
-        print(tennis.SetInstance.GamesWonForPlayer1(), tennis.SetInstance.GamesWonForPlayer2())
         tennis.serve()
         XCTAssertFalse((tennis.toneSound == nil), "Tone has not played")
         
@@ -112,8 +108,6 @@ class TennisTests: XCTestCase {
             tennis.SetInstance.addGameToPlayer1()
         }
         tennis.SetInstance.addGameToPlayer2()
-
-        print(tennis.SetInstance.GamesWonForPlayer1(), tennis.SetInstance.GamesWonForPlayer2())
         tennis.serve()
         XCTAssertTrue((tennis.toneSound != nil), "Tone has played")
     }
@@ -123,7 +117,6 @@ class TennisTests: XCTestCase {
             tennis.MatchInstance.addSetsToPlayer2()
         }
 
-        print(tennis.SetInstance.GamesWonForPlayer1(), tennis.SetInstance.GamesWonForPlayer2())
         tennis.serve()
         XCTAssertTrue((tennis.toneSound != nil), "Tone has played")
         
@@ -134,7 +127,6 @@ class TennisTests: XCTestCase {
              tennis.SetInstance.addGameToPlayer2()
         }
 
-        print(tennis.SetInstance.GamesWonForPlayer1(), tennis.SetInstance.GamesWonForPlayer2())
         tennis.serve()
         XCTAssertTrue((tennis.toneSound == nil), "Tone has not played")
         
@@ -254,7 +246,6 @@ class TennisTests: XCTestCase {
         }
         tennis.serve()
         let Check = tennis.playerServe
-        print(tennis.MatchInstance.p2SetsWon,tennis.SetInstance.GamesWonForPlayer2())
         
         XCTAssertTrue(Check)
     }
@@ -271,7 +262,6 @@ class TennisTests: XCTestCase {
         }
         tennis.serve()
         let result = tennis.playerServe
-        print(tennis.MatchInstance.p2SetsWon,tennis.SetInstance.GamesWonForPlayer2())
         
         XCTAssertNotEqual(check, result)
     }
